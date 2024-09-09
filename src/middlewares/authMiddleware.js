@@ -9,10 +9,9 @@ export const signJWT = (user) => {
     return jwt.sign({ _id: user._id },process.env.TOKEN_SECRET,{ expiresIn: "24h" })
 }
 
-export const verifyJWT = async(req, _, next) => {
+export const verifyJWT = async(req, res, next) => {
     try {
         const token = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "")
-        
         if (!token) {
             res.status(401).json("Unauthorized request")
         }
@@ -22,7 +21,6 @@ export const verifyJWT = async(req, _, next) => {
         const user = await User.findById(decodedToken?._id).select("-password")
     
         if (!user) {
-            
             res.status(401).json("Invalid Access Token")
         }
     
@@ -33,3 +31,4 @@ export const verifyJWT = async(req, _, next) => {
     }
     
 }
+

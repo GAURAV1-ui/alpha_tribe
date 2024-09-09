@@ -44,14 +44,22 @@ export const loginUser = async (req, res) => {
         }
         const token = signJWT(user);
 
-        if(token === null){
-            return res.status(400).json({ message: "Invalid credentials" });
-        }
+        const loggedInUser = await User.findById(user._id).select("-password -bio -profilePicture");
 
         return res
         .status(200)
         .cookie("accessToken", token, options)
-        .json({token, user: { userId: user._id, username: user.username, email: user.email, }});
+        .json({token, user: loggedInUser});
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
+export const getUser = async (req, res) => {
+    try {
+        const {userId} = req.params;
+        const user = await User.findById(userId).select("-password");
+        return res.status(200).json(user);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

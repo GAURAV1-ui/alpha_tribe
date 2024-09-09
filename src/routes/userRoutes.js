@@ -1,9 +1,11 @@
 import { Router } from "express";
-import { createUser,loginUser } from "../controllers/userController.js";
+import { createUser,loginUser,getUser } from "../controllers/userController.js";
+import { verifyJWT } from "../middlewares/authMiddleware.js";
 
-const route = Router();
+const router = Router();
 
-route.post("/register", createUser)
-route.post("/login", loginUser)
+router.post("/auth/register", createUser)
+router.post("/auth/login", loginUser)
+router.get("/user/profile/:userId",verifyJWT, getUser)
 
-export default route;
+export default router;
