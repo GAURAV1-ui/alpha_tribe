@@ -4,9 +4,16 @@ import connectDB from "./db/index.js";
 import dotenv from 'dotenv';
 import path from 'path';
 
+import userRoutes from "./routes/userRoutes.js";
+
 dotenv.config({path: path.join('.env')});
 
 const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/api/auth", userRoutes);
 
 connectDB()
 .then(()=> {
