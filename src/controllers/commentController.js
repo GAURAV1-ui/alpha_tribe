@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { Comment } from "../models/commentModel.js";
 
-export const createComment = async (req, res) => { 
+export const createComment = async ({io}) => { 
     
     try {
         const { postId } = req.params;
