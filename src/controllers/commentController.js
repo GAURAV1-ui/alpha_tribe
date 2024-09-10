@@ -19,9 +19,6 @@ export const createComment = async (req,res) => {
         if(!user) {
             return res.status(401).json({ message: "Unauthorized request" });
         }
-        const postIdObject = new mongoose.Types.ObjectId(postId);
-
-        console.log(typeof user._id, typeof postId);
 
         const newComment = new Comment({ userId: user._id, postId: postId,  content});
 
