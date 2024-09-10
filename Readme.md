@@ -36,4 +36,4 @@ Run the Application
 bash
 Copy code
 npm start
-The application will start with Nodemon and can be accessed at http://localhost:8000.
+The application will start with Nodemon and can be accessed at http://localhost:8000 or https://alpha-tribe.onrender.com

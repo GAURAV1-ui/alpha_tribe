@@ -8,6 +8,9 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
 
+import swaggerUi from 'swagger-ui-express';
+import swaggerSpec, { swaggerUiSetup } from './utils/swagger.js';
+
 //routes
 import userRoutes from "./routes/userRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
@@ -27,6 +30,7 @@ const io = new Server(server,{
 });
 
 //middlewares
+app.use('/api-docs', swaggerUi.serve, swaggerUiSetup);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookiesParser());
