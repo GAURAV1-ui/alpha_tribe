@@ -11,6 +11,7 @@ import path from 'path';
 //routes
 import userRoutes from "./routes/userRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
+import commentRoutes from "./routes/commentRoutes.js";
 
 dotenv.config({path: path.join('.env')});
 
@@ -48,6 +49,7 @@ app.use((req, res, next) => {
 //routes
 app.use("/api", userRoutes);
 app.use("/api/posts", postRoutes);
+app.use("/api/posts", commentRoutes);
 
 
 //connect to db
