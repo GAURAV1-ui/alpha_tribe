@@ -1,9 +1,11 @@
 import express from "express";
-import { createComment } from "../controllers/commentController.js";
+import { createComment,deleteComment } from "../controllers/commentController.js";
+import { verifyJWT } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
-router.post("/:postId/comments", createComment);
+router.post("/:postId/comments",verifyJWT, createComment);
+router.delete("/:postId/comments/:commentId", verifyJWT, deleteComment);
 
 export default router;
 
