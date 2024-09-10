@@ -37,3 +37,4 @@ bash
 Copy code
 npm start
 The application will start with Nodemon and can be accessed at http://localhost:8000 or https://alpha-tribe.onrender.com
+Swagger at https://alpha-tribe.onrender.com/api-docs or http://localhost:8000/api-docs

@@ -44,7 +44,7 @@ export const loginUser = async (req, res) => {
         }
         const token = signJWT(user);
 
-        const loggedInUser = await User.findById(user._id).select("-password -bio -profilePicture");
+        const loggedInUser = await User.findById(user._id).select("-password -bio -profilePicture -createdAt -updatedAt -__v");
 
         return res
         .status(200)
